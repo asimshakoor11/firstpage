@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toronto Community Fridays Initiative</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        color: #000;
+        background-color: #fff;
+        line-height: 1.6;
+      }
+
+      header {
+        background: linear-gradient(135deg, #003366 0%, #002244 100%);
+        color: #fff;
+        text-align: center;
+        padding: 4rem 1rem;
+        min-height: 60vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      header h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        animation: fadeInDown 1s ease;
+      }
+
+      header p {
+        font-size: 1.4rem;
+        margin-bottom: 3rem;
+        opacity: 0.9;
+        animation: fadeInUp 1s ease;
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .btn-container {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .btn-container a {
+        padding: 0.75rem 1.5rem;
+        text-decoration: none;
+        color: #fff;
+        font-weight: 600;
+        border-radius: 5px;
+      }
+
+      .apply-btn {
+        background-color: #e60000;
+        transition: background-color 0.3s ease;
+      }
+
+      .apply-btn:hover {
+        background-color: #cc0000;
+      }
+
+      .details-btn {
+        background-color: #fff;
+        color: #003366 !important;
+        border: 2px solid #003366;
+        transition: all 0.3s ease;
+      }
+
+      .details-btn:hover {
+        background-color: #f1f1f1;
+      }
+
+      .section {
+        padding: 4rem 1rem;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .section h2 {
+        text-align: center;
+        margin-bottom: 3rem;
+        font-size: 2.5rem;
+        color: #003366;
+        position: relative;
+        padding-bottom: 0.5rem;
+      }
+
+      .section h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: #e60000;
+        border-radius: 2px;
+      }
+
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        text-align: center;
+        margin: 2rem 0;
+      }
+
+      .steps div {
+        background: #f1f1f1;
+        padding: 1.5rem;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      }
+
+      .steps div:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        background: #003366;
+        color: white;
+      }
+
+      .steps div strong {
+        display: inline-block;
+        font-size: 1.8rem;
+        margin-bottom: 0.8rem;
+        color: #fff;
+        background: #003366;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+      }
+
+      .steps div:hover strong {
+        background: #e60000;
+        transform: scale(1.1);
+      }
+
+      .steps div::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: #e60000;
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+
+      .steps div:hover::before {
+        transform: scaleX(1);
+      }
+
+      .info-columns {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .info {
+        flex: 1;
+        min-width: 300px;
+        background: #fff;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+      }
+
+      .info:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      }
+
+      .info h3 {
+        color: #003366;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+      }
+
+      .info ul {
+        padding-left: 0;
+        list-style: none;
+      }
+
+      .info ul li {
+        margin-bottom: 1rem;
+        position: relative;
+        padding-left: 2rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .info ul li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      .info:first-of-type ul li::before {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2328a745'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
+      }
+
+      .info:last-of-type ul li::before {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23dc3545'%3E%3Cpath d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z'/%3E%3C/svg%3E");
+      }
+
+      .info ul li {
+        transition: transform 0.2s ease;
+      }
+
+      .info ul li:hover {
+        transform: translateX(5px);
+      }
+
+      .content-section {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        padding: 4rem 0;
+      }
+
+      .content-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0rem 1rem;
+      }
+
+      .left-column {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .warranty, .donation {
+        margin-top: 0;
+        padding: 0;
+        background: none;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .warranty:hover, .donation:hover {
+        transform: none;
+        box-shadow: none;
+      }
+
+      .warranty h3, .donation h3 {
+        color: #003366;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .warranty h3::before {
+        content: '🛡️';
+      }
+
+      .donation h3::before {
+        content: '❤️';
+      }
+
+      form {
+        margin-top: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        background: #fff;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+      }
+
+      form:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      }
+
+      input {
+        padding: 1rem;
+        font-size: 1rem;
+        border-radius: 8px;
+        border: 2px solid #eee;
+        transition: all 0.3s ease;
+      }
+
+      input:focus {
+        border-color: #003366;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(0,51,102,0.1);
+      }
+
+      button {
+        padding: 1rem;
+        font-size: 1.1rem;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #003366 0%, #002244 100%);
+        color: white;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0,51,102,0.2);
+      }
+
+      footer {
+        background: #003366;
+        color: white;
+        text-align: center;
+        padding: 2rem;
+        font-size: 1rem;
+      }
+
+      footer a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      footer a:hover {
+        color: #e60000;
+      }
+
+      .sticky-cta {
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 2rem;
+        }
+        
+        header p {
+          font-size: 1.2rem;
+        }
+
+        .sticky-cta {
+          display: block;
+          position: fixed;
+          bottom: 0;
+          width: 100%;
+          background: linear-gradient(135deg, #e60000 0%, #cc0000 100%);
+          color: white;
+          text-align: center;
+          padding: 1rem;
+          font-weight: bold;
+          z-index: 1000;
+          box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+
+        .content-wrapper {
+          grid-template-columns: 1fr;
+        }
+
+        .info-columns {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .info {
+          min-width: 100%;
+        }
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>Toronto Community Fridays Initiative</h1>
+      <p>Free Appliance Installation Every Friday - Just $75 Travel Fee</p>
+      <div class="btn-container">
+        <a href="#apply" class="apply-btn" onclick="event.preventDefault(); document.querySelector('#apply').scrollIntoView({behavior: 'smooth'});">Apply for Free Installation</a>
+        <a href="#details" class="details-btn" onclick="event.preventDefault(); document.querySelector('.info-columns').scrollIntoView({behavior: 'smooth'});">Read Full Details</a>
+      </div>
+    </header>
+
+    <section class="section">
+      <h2>How It Works</h2>
+      <div class="steps">
+        <div><strong>1</strong><br />Fill out the form</div>
+        <div><strong>2</strong><br />Receive confirmation</div>
+        <div>
+          <strong>3</strong><br />Prepare installation space & materials
+        </div>
+        <div><strong>4</strong><br />Technician arrives Friday</div>
+      </div>
+
+      <div class="info-columns">
+        <div class="info">
+          <h3>What's Included</h3>
+          <ul>
+            <li>Installation of 1 standard appliance per household</li>
+            <li>No labor charge</li>
+            <li>Experienced KAS PROS technicians</li>
+            <li>
+              Appliances: Dishwasher, range hood, washer, dryer, fridge,
+              side-by-side units, OTR microwave, induction cooktop
+            </li>
+          </ul>
+        </div>
+        <div class="info">
+          <h3>What's Not Included</h3>
+          <ul>
+            <li>
+              Wall ovens, stacked washer/dryers, or installations requiring two or more technicians
+            </li>
+            <li>No structural, plumbing, or electrical modifications</li>
+            <li>Customer must supply all materials</li>
+            <li>Installation space must be ready</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="content-section">
+      <div class="content-wrapper">
+        <div class="left-column">
+          <div class="warranty">
+            <h3>Warranty Coverage</h3>
+            <p>
+              Installations come with 3 months of coverage. A $75 call-out fee
+              applies if a revisit is required. Thankfully, our experienced
+              technicians ensure installations are done right the first time.
+            </p>
+          </div>
+
+          <div class="donation">
+            <h3>Optional Donation</h3>
+            <p>
+              This initiative is powered by our community. If you're able, please
+              consider an optional donation of $5 to $20 to help support more families in need.
+            </p>
+          </div>
+        </div>
+
+        <div id="apply">
+          <form>
+            <input type="text" placeholder="Full Name" required />
+            <input type="text" placeholder="Address" required />
+            <input type="tel" placeholder="Phone Number" required />
+            <input type="email" placeholder="Email" required />
+            <input type="text" placeholder="Appliance Type" required />
+            <button type="submit">Apply Now</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="sticky-cta">
+      <a href="#apply" style="color: white; text-decoration: none"
+        >Apply for Free Installation</a
+      >
+    </div>
+
+    <footer>
+      <p>Powered by KAS PROS - Trusted Installation Experts</p>
+      <p>
+        <a href="https://www.kaspros.com" target="_blank">www.kaspros.com</a> |
+        1-888-520-4527
+      </p>
+    </footer>
+  </body>
+</html>
