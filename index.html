@@ -143,13 +143,12 @@
       }
 
       .steps div {
-        background: #f1f1f1;
+        background: transparent;
         padding: 1rem;
         border-radius: 12px;
         transition: all 0.5s ease;
         position: relative;
         overflow: hidden;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       }
 
       .steps div:hover {
@@ -163,17 +162,18 @@
         display: inline-block;
         font-size: 1.5rem;
         margin-bottom: 0.8rem;
-        color: #fff;
-        background: #003366;
+        color: #003366;
+        background: #f1f1f1;
         width: 50px;
         height: 50px;
         line-height: 50px;
-        border-radius: 50%;
+        border-radius: 8px;
         transition: all 0.3s ease;
       }
 
       .steps div:hover strong {
         background: #e60000;
+        color: white;
         transform: scale(1.1);
       }
 
@@ -196,13 +196,25 @@
       .info-columns {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
-        margin-top: 2rem;
+        gap: 0rem;
+        margin-top: 0rem;
       }
 
       .info {
         flex: 1;
         min-width: 300px;
+        padding: 1.5rem;
+        border-radius: 0px;
+      }
+
+      .info:first-of-type {
+        background-color: #d5dce1;
+        border-radius: 8px 0 0 8px; /* top-left, top-right, bottom-right, bottom-left */
+      }
+
+      .info:last-of-type {
+        background-color: #e7ebee;
+        border-radius: 0px 8px 8px 0px; /* top-left, top-right, bottom-right, bottom-left */
       }
 
       .info h3 {
@@ -254,7 +266,7 @@
       }
 
       .content-section {
-        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        background: white;
         padding: 2rem 0;
       }
 
@@ -307,16 +319,8 @@
         display: flex;
         flex-direction: column;
         gap: 1.2rem;
-        background: #fff;
-        padding: 1rem;
         border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease;
-      }
-
-      form:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
       }
 
       input {
@@ -330,16 +334,15 @@
       input:focus {
         border-color: #003366;
         outline: none;
-        box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
       }
 
       button {
         padding: 0.5rem;
         font-size: 1.1rem;
+        font-weight: 500;
         border-radius: 8px;
         background: linear-gradient(135deg, #003366 0%, #002244 100%);
         color: white;
-        font-weight: bold;
         border: none;
         cursor: pointer;
         transition: all 0.3s ease;
@@ -401,13 +404,21 @@
 
         .info-columns {
           grid-template-columns: 1fr;
-          gap: 1.5rem;
+          gap: 0rem;
+        }
+
+        .info:first-of-type {
+          border-radius: 8px 8px 0 0px; /* top-left, top-right, bottom-right, bottom-left */
+        }
+
+        .info:last-of-type {
+          border-radius: 0px 0px 8px 8px; /* top-left, top-right, bottom-right, bottom-left */
         }
 
         .info {
           min-width: 100%;
         }
-        
+
         .content-section {
           padding: 1rem 0;
         }
@@ -537,7 +548,7 @@
         }
 
         .info-columns {
-          gap: 0.5rem;
+          gap: 0rem;
           margin-top: 1rem;
         }
 
@@ -598,7 +609,7 @@
           >Apply for Free Installation</a
         >
         <a
-          href="https://drive.google.com/file/d/1nTEF8V9gu5WDYK1jSxfD3xKt1zfS2LvV/view?usp=sharing"
+          href="https://drive.google.com/file/d/18I6H7UIOVsPKhGswya6xvjbHEubzf81g/view"
           target="_blank"
           class="details-btn"
           download
