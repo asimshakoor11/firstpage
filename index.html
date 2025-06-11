@@ -71,6 +71,15 @@
         }
       }
 
+      strong{
+        color: #cc0000;
+      }
+      
+      .highlighted-text{
+        color: white;
+        text-decoration: underline;
+      }
+
       .btn-container {
         display: flex;
         justify-content: center;
@@ -99,7 +108,7 @@
       .details-btn {
         background-color: #fff;
         color: #003366 !important;
-        border: 2px solid #003366;
+        border: 1px solid #003366;
         transition: all 0.3s ease;
       }
 
@@ -119,7 +128,7 @@
         font-size: 2rem;
         color: #003366;
         position: relative;
-        padding-bottom: 0.5rem;
+        padding-bottom: 0.3rem;
       }
 
       .section h2::after {
@@ -144,7 +153,7 @@
 
       .steps div {
         background: transparent;
-        padding: 1rem;
+        padding: 1rem 0.5rem 0.5rem 0.5rem;
         border-radius: 12px;
         transition: all 0.5s ease;
         position: relative;
@@ -160,13 +169,13 @@
 
       .steps div strong {
         display: inline-block;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         margin-bottom: 0.8rem;
         color: #003366;
         background: #f1f1f1;
-        width: 50px;
-        height: 50px;
-        line-height: 50px;
+        width: 45px;
+        height: 45px;
+        line-height: 45px;
         border-radius: 8px;
         transition: all 0.3s ease;
       }
@@ -174,7 +183,6 @@
       .steps div:hover strong {
         background: #e60000;
         color: white;
-        transform: scale(1.1);
       }
 
       .steps div::before {
@@ -600,7 +608,7 @@
   <body>
     <header>
       <h1>Toronto Community Fridays Initiative</h1>
-      <p>Free Appliance Installation Every Friday - Just $75 Travel Fee</p>
+      <p>Free Appliance Installation Every Friday - <span class="highlighted-text">Just $75 Travel Fee</span></p>
       <div class="btn-container">
         <a
           href="#apply"
@@ -609,7 +617,7 @@
           >Apply for Free Installation</a
         >
         <a
-          href="https://drive.google.com/file/d/18I6H7UIOVsPKhGswya6xvjbHEubzf81g/view"
+          href="toronto-community-fridays.pdf"
           target="_blank"
           class="details-btn"
           download
@@ -633,24 +641,22 @@
         <div class="info">
           <h3>What's Included</h3>
           <ul>
-            <li>Installation of 1 standard appliance per household</li>
-            <li>No labor charge</li>
-            <li>Experienced KAS PROS technicians</li>
+            <li>One appliance install per household</li>
             <li>
-              Appliances: Dishwasher, range hood, washer, dryer, fridge,
+              Covered appliances: Dishwasher, Range hood, washer, dryer
               side-by-side units, OTR microwave, induction cooktop
             </li>
+            <li>No labor charge</li>
+            <li>Experienced KAS PROS technicians</li>
           </ul>
         </div>
         <div class="info">
           <h3>What's Not Included</h3>
           <ul>
-            <li>
-              Wall ovens, stacked washer/dryers, or installations requiring two
-              or more technicians
-            </li>
-            <li>No structural, plumbing, or electrical modifications</li>
-            <li>Customer must supply all materials</li>
+            <li>No stacked units or wall ovens</li>
+            <li>No installs needing 2+ techs</li>
+            <li>No electrical, plumbing, or structural modifications</li>
+            <li>Materials must be supplied by the customer</li>
             <li>Installation space must be ready</li>
           </ul>
         </div>
@@ -663,9 +669,10 @@
           <div class="warranty">
             <h3>Warranty Coverage</h3>
             <p>
-              Installations come with 3 months of coverage. A $75 call-out fee
-              applies if a revisit is required. Thankfully, our experienced
-              technicians ensure installations are done right the first time.
+              Installations come with <strong> 3 months of coverage.</strong> A
+              <strong> $75 call-out </strong>fee applies if a revisit is
+              required. Thankfully, our experienced technicians ensure it's done
+              right the first time
             </p>
           </div>
 
@@ -680,13 +687,14 @@
         </div>
 
         <div id="apply">
-          <form>
-            <input type="text" placeholder="Full Name" required />
-            <input type="text" placeholder="Address" required />
-            <input type="tel" placeholder="Phone Number" required />
-            <input type="email" placeholder="Email" required />
-            <input type="text" placeholder="Appliance Type" required />
-            <button type="submit">Apply Now</button>
+          <form id="contact-form">
+            <input type="text" name="fullName" placeholder="Full Name" required />
+            <input type="text" name="address" placeholder="Address" required />
+            <input type="tel" name="phone" placeholder="Phone (Text enabled Preferred)" required />
+            <input type="email" name="email" placeholder="Email" required />
+            <input type="text" name="applianceType" placeholder="Appliance Type" required />
+            <button type="submit" id="submit-btn">Apply Now</button>
+            <div id="status-message" style="display: none; margin-top: 10px; padding: 10px; border-radius: 4px;"></div>
           </form>
         </div>
       </div>
@@ -699,11 +707,64 @@
     </div>
 
     <footer>
-      <p>Powered by KAS PROS - Trusted Installation Experts</p>
       <p>
-        <a href="https://www.kaspros.com" target="_blank">www.kaspros.com</a> |
-        1-888-520-4527
+        <a href="kasprosappliancerepairs.com" target="_blank"
+          >kasprosappliancerepairs.com</a
+        >
+        | 1-888-520-4527
       </p>
     </footer>
+
+    <!-- Add EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("LBjv8ruHSexGzW3Hk");
+        })();
+
+        const form = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const statusMessage = document.getElementById('status-message');
+
+        function showStatus(message, isError = false) {
+            statusMessage.textContent = message;
+            statusMessage.style.display = 'block';
+            statusMessage.style.backgroundColor = isError ? '#ffebee' : '#e8f5e9';
+            statusMessage.style.color = isError ? '#c62828' : '#2e7d32';
+        }
+
+        function setLoading(isLoading) {
+            submitBtn.disabled = isLoading;
+            submitBtn.textContent = isLoading ? 'Sending...' : 'Apply Now';
+            submitBtn.style.opacity = isLoading ? '0.7' : '1';
+        }
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            setLoading(true);
+            showStatus('Sending your application...');
+
+            const formData = {
+                fullName: this.fullName.value,
+                address: this.address.value,
+                phone: this.phone.value,
+                email: this.email.value,
+                applianceType: this.applianceType.value
+            };
+
+            emailjs.send('service_16j7b28', 'template_ue9zga8', formData)
+                .then(function() {
+                    showStatus('Thank you! Your application has been submitted successfully.');
+                    form.reset();
+                })
+                .catch(function(error) {
+                    showStatus('Unable to submit your application. Please try again.', true);
+                    console.error('Error:', error);
+                })
+                .finally(function() {
+                    setLoading(false);
+                });
+        });
+    </script>
   </body>
 </html>
